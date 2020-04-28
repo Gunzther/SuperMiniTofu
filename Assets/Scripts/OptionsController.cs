@@ -13,7 +13,14 @@ public class OptionsController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        if (PlayerPrefs.HasKey("SFX_Vol"))
+        {
+            sliderSFX.value = PlayerPrefs.GetFloat("SFX_Vol");
+        }
+        if (PlayerPrefs.HasKey("BG_Vol"))
+        {
+            sliderBG.value = PlayerPrefs.GetFloat("BG_Vol");
+        }
     }
 
     // Update is called once per frame
@@ -40,5 +47,12 @@ public class OptionsController : MonoBehaviour
     public void ResetBG()
     {
         sliderBG.value = 0;
+    }
+
+    public void SaveVolume()
+    {
+        PlayerPrefs.SetFloat("SFX_Vol", sliderSFX.value);
+        PlayerPrefs.SetFloat("BG_Vol", sliderBG.value);
+        PlayerPrefs.Save();
     }
 }
